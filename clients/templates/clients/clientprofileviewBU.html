@@ -1,0 +1,17 @@
+{% extends "candidates/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <div class="content-section">
+      <div class="media">
+        
+        <div class="media-body">
+          <h4 class="account-heading">User name: {{ user.username }}
+          <p class="text-secondary">Co name {{ user.clientprofile.fullname }}</p>
+          <p class="text-secondary">Branch: {{ user.clientprofile.branch }}</p>  
+          <p class="text-secondary">{{ user.email }}</p>
+          <p class="text-secondary">{{ user.clientprofile.contact1 }}-{{user.clientprofile.contact1tel}}-{{user.clientprofile.contact1email}}</p>
+          <p class="text-secondary">{{ user.clientprofile.contact2 }}-{{user.clientprofile.contact2tel}}-{{user.clientprofile.contact2email}}</p></h4>
+       </div>
+      </div>
+    </div>
+{% endblock content %}

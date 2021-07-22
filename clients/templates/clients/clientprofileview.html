@@ -1,0 +1,35 @@
+{% extends "candidates/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+        <div class="content-section">
+          <div class="panel panel-default">
+            <div class="panel-heading">Company name: 
+              <h2><p> {{ user.clientprofile.fullname }}</p></h2></div>
+            <div class="panel-body">
+              <p>Branch:</p>
+              <p><h2>{{ user.clientprofile.branch }}</h2></p>
+              <p>Contacts:</p>
+              <p><h2>{{ user.clientprofile.contact1}}</h2></p>
+              <p>{{user.clientprofile.contact1tel}}</p>
+              <p>{{user.clientprofile.contact1email}}</p>
+              
+              <p><h2>{{ user.clientprofile.contact2}}</h2></p>
+              <p>{{user.clientprofile.contact2tel}}</p>
+              <p>{{user.clientprofile.contact2email}}</p>
+            </div>
+        </div>
+
+        <div class="border-top pt-3">
+            <small class="text-muted">
+               <a class="ml-2" href="{% url 'client-name' user %}">View Candidates</a>
+            </small>
+        </div>
+
+        <div class="border-top pt-3">
+            <small class="text-muted">
+               <a class="ml-2" href="{% url 'clientprofile' %}">Edit Profile</a>
+            </small>
+        </div>
+
+
+{% endblock content %}

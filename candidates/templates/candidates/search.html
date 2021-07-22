@@ -1,0 +1,18 @@
+{% extends "candidates/base.html" %}
+{% block content %}
+    <h4>Search Page</h4>
+<!-- user.id = {{ user.id }} client id: {{ client_id}} -->
+	<article class="media content-section">
+		<div class="media-body">
+			<div class="article-metadata">
+			    <form action="{% url 'search-results' %}" method="get">
+			    	<label>Please enter candidate's last name</label>
+			        <input  name="p" type="text" placeholder="Family name">
+			        <input  type = hidden name="userid" value={{ user.id }}>
+			        <button id="search_submit" type="submit" >Submit</button>
+			    </form>
+			 </div>   
+		</div>
+	</article>
+ 
+{% endblock content %}

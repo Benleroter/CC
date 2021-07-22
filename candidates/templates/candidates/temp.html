@@ -1,0 +1,84 @@
+
+
+
+
+            <p class="text-muted">
+               {% if candidate.referencestatus == 1 %}
+                  <img src="/media/green traffic light.jpg" alt="", height = 32, width = 32>
+                  Reference received: {{ candidate.referencereceived|date:"j-M-y" }} 
+                {% endif %}  
+                {% if candidate.referencestatus == 2 %}
+                  <img src="/media/amber traffic light.jpg" alt="", height = 32, width = 32>
+                  Reference requested: {{ candidate.referencerequested|date:"j-M-y" }} 
+                {% endif %}
+                {% if candidate.referencestatus == 3 %}
+                  <img src="/media/red traffic light.jpg" alt="", height = 32, width = 32>
+                  Reference not yet requested
+                {% endif %}
+              </p>
+
+              <p class="text-muted">
+               {% if candidate.passportstatus == 1 %}
+                  <img src="/media/green traffic light.jpg" alt="", height = 32, width = 32>
+                  Passport checked: {{ candidate.passportchecked|date:"j-M-y" }} 
+                {% else %}
+                   <img src="/media/red traffic light.jpg" alt="", height = 32, width = 32>
+                  Passport not checked
+                {% endif %}
+              </p>              
+
+               {% if candidate.ccjstatus == 1 %}
+                  <img src="/media/green traffic light.jpg" alt="", height = 32, width = 32>
+                  CCJ records received: {{ candidate.ccjchecked|date:"j-M-y" }} 
+                {% endif %}  
+                {% if candidate.ccjstatus == 2 %}
+                  <img src="/media/amber traffic light.jpg" alt="", height = 32, width = 32>
+                  CCJ request made: {{ candidate.ccjrequestmade|date:"j-M-y" }} 
+                {% endif %}
+                {% if candidate.ccjstatus == 3 %}
+                  <img src="/media/red traffic light.jpg" alt="", height = 32, width = 32>
+                  CCJ not yet requested
+                {% endif %}
+              </p>
+
+              <p class="text-muted">
+               {% if candidate.righttoworkstatus == 1 %}
+                  <img src="/media/green traffic light.jpg" alt="", height = 32, width = 32>
+                  Right to work proof received: {{ candidate.righttoworkchecked|date:"j-M-y" }} 
+                {% endif %}  
+                {% if candidate.righttoworkstatus == 2 %}
+                  <img src="/media/amber traffic light.jpg" alt="", height = 32, width = 32>
+                  Right to work proof requested: {{ candidate.righttoworkrequestmade|date:"j-M-y" }} 
+                {% endif %}
+                {% if candidate.righttoworkstatus == 3 %}
+                  <img src="/media/red traffic light.jpg" alt="", height = 32, width = 32>
+                  Reference not yet requested
+                {% endif %}
+              </p>
+
+               <p class="text-muted">
+                {% if candidate.dvlc == 1 %}
+                  <img src="/media/green traffic light.jpg" alt="", height = 32, width = 32>
+                  Driving Licence {{ candidate..dvlc }} 
+                {% endif %}  
+                {% if candidate.dvlc == 2 %}
+                  <img src="/media/red traffic light.jpg" alt="", height = 32, width = 32>
+                  Not checked: {{ candidate.dvlc }} 
+                {% endif %}
+               </p>
+
+              <p class="text-muted">
+               {% if candidate.dbsstatus == 1 %}
+                  <img src="/media/green traffic light.jpg" alt="", height = 32, width = 32>
+                  DBS received: {{ candidate.dbschecked|date:"j-M-y" }} 
+                {% endif %}  
+                {% if candidate.dbsstatus == 2 %}
+                  <img src="/media/amber traffic light.jpg" alt="", height = 32, width = 32>
+                  DBS requested: {{ candidate.dbsrequestmade|date:"j-M-y" }} 
+                {% endif %}
+                {% if candidate.dbsstatus == 3 %}
+                  <img src="/media/red traffic light.jpg" alt="", height = 32, width = 32>
+                  DBS not yet requested
+                {% endif %}
+              </p>
+ 

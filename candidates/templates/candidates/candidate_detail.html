@@ -1,0 +1,119 @@
+{% extends "candidates/base.html" %}
+{% block content %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <h1>
+                <a class="candidate-title" href="{% url 'candidates-detail' candidate.id %}">
+                <a class="candidate-title" >{{ object.candidatesalutation}}</a>
+                <a>{{ object.candidatefirstname}}</a>
+                <a>{{ object.candidatemiddlename}}</a>
+                <a>{{ object.candidatefamilyname}}</a> detail
+              </h1> 
+                <p><h6>DOB: {{candidate.dob|date:"j-M-Y"}}</h6></p>
+                <p><h6>email: {{candidate.candidateemail}}</h6></p>
+            </div>
+              <p>
+                 {% if request.user.is_superuser%}
+                    <h6><a class="mr-2" href="{% url 'client-name' candidate.client.username %}">{{ candidate.client.clientprofile.fullname }}: Candidate</a></h6> 
+                  {% endif %}
+              </p>
+
+              <!--{% if object.client == user %}
+                <div>
+                <a class="btn btn-secondary btn-sm nt-1 mb-1" href="{% url 'candidates-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm nt-1 mb-1" href="{% url 'candidates-delete' object.id %}">Delete</a>
+                </div> 
+              {% endif %}-->
+
+
+              <p class="text-muted">
+               {% if candidate.referencestatus == 1 %}
+                  <img src="/media/green.jpg" height = 32, width = 32>
+                    Reference received: {{ candidate.referencereceived|date:"j-M-y" }}
+               {% endif  %}  
+
+               {% if candidate.referencestatus == 2 %}
+                  <img src="/media/amber.jpg" height = 32, width = 32>
+                    Reference requested: {{ candidate.referencerequested|date:"j-M-y" }} 
+               {% endif %}
+
+               {% if candidate.referencestatus == 3 %}
+                     <img src="/media/red.jpg" height = 32, width = 32>
+                       Reference not yet requested
+                 {% endif %}
+              </p>
+
+              <p class="text-muted">
+               {% if candidate.passportstatus == 1 %}
+                  <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                  Passport checked: {{ candidate.passportchecked|date:"j-M-y" }} 
+                {% else %}
+                   <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                  Passport not checked
+                {% endif %}
+              </p>
+
+                <p class="text-muted">
+               {% if candidate.ccjstatus == 1 %}
+                  <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                  CCJ records received: {{ candidate.ccjchecked|date:"j-M-y" }} 
+                {% endif %}  
+                {% if candidate.ccjstatus == 2 %}
+                  <img src="/media/amber.jpg" alt="", height = 32, width = 32>
+                  CCJ request made: {{ candidate.ccjrequestmade|date:"j-M-y" }} 
+                {% endif %}
+                {% if candidate.ccjstatus == 3 %}
+                  <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                  CCJ not yet requested
+                {% endif %}
+              </p>
+
+              <p class="text-muted">
+               {% if candidate.righttoworkstatus == 1 %}
+                  <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                  Right to work proof received: {{ candidate.righttoworkchecked|date:"j-M-y" }} 
+                {% endif %}  
+                {% if candidate.righttoworkstatus == 2 %}
+                  <img src="/media/amber.jpg" alt="", height = 32, width = 32>
+                  Right to work proof requested: {{ candidate.righttoworkrequestmade|date:"j-M-y" }} 
+                {% endif %}
+                {% if candidate.righttoworkstatus == 3 %}
+                  <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                  Right to work proof not yet requested
+                {% endif %}
+              </p>
+
+               <p class="text-muted">
+                {% if candidate.dvlc == 1 %}
+                          {% if  candidate.dvlcpoints > 0 %}
+                            <img src="/media/green!.jpg" alt="", height = 32, width = 32>
+                            Driving Licence checked:  {{ candidate.dvlcpoints}} - points
+                          {% else %}
+                            <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                          {% endif %}
+                        </span>
+                      {% endif %}  
+                      {% if candidate.dvlc == 0 %}
+                         <span data-tooltip="Driving not checked:"  data-tooltip-position="bottom">
+                        <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                      {% endif %}
+               </p>
+
+              <p class="text-muted">
+               {% if candidate.dbsstatus == 1 %}
+                  <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                  DBS received: {{ candidate.dbschecked|date:"j-M-y" }} 
+                {% endif %}  
+                {% if candidate.dbsstatus == 2 %}
+                  <img src="/media/amber.jpg" alt="", height = 32, width = 32>
+                  DBS requested: {{ candidate.dbsrequestmade|date:"j-M-y" }} 
+                {% endif %}
+                {% if candidate.dbsstatus == 3 %}
+                  <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                  DBS not yet requested
+                {% endif %}
+              </p>
+          </div>
+        </article>
+{% endblock content %}

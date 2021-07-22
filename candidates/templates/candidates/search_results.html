@@ -1,0 +1,127 @@
+{% extends "candidates/base.html" %}
+{% block content %}
+{% if object_list.count == 1 %}
+<h5>{{object_list.count}} Search Result</h5>
+{% else %}
+<h5>{{object_list.count}} Search Results</h5>
+{% endif %}
+
+
+    {% for candidate in object_list %}
+    <!--    {% if forloop.first %}
+             <h6 class="mb-3">{{candidate.client.clientprofile.fullname}}</h6>
+             <h6 class="mb-3">{{candidate.client.username}}</h6>
+             <h6 class="mb-3">{{candidate.candidatefamilyname}}</h6>
+             <h6 class="mb-3">candidate client id: {{candidate.client.id}}</h6>
+             <h6 class="mb-3">candidate id: {{candidate.id}}</h6>
+             <h6 class="mb-3">user id: {{user.id}}</h6>
+             <h6 class="mb-3">object list count: {{object_list.count}}</h6>
+        {% endif %}-->
+         
+             
+            <article class="media content-section">
+              <div class="media-body">
+                <div class="article-metadata">
+                <h3>
+                    <a class="candidate-title" href="{% url 'candidates-detail' candidate.id %}">
+                      {{ candidate.candidatesalutation}} {{ candidate.candidatefirstname}} {{ candidate.candidatemiddlename}} {{ candidate.candidatefamilyname}}</a>
+            
+                      {% if candidate.referencestatus == 1 %}
+                        <span data-tooltip="Reference received: {{ candidate.referencereceived|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}  
+                      {% if candidate.referencestatus == 2 %}
+                        <span data-tooltip="Reference requested: {{ candidate.referencerequested|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/amber.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+                      {% if candidate.referencestatus == 3 %}
+                        <span data-tooltip="Reference not yet requested"  data-tooltip-position="bottom">
+                          <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+                    
+                      {% if candidate.passportstatus == 1 %}
+                        <span data-tooltip="Passport checked: {{ candidate.passportchecked|date:"j-M-y" }} "  data-tooltip-position="bottom">
+                          <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                        </span>                      
+                      {% else %}
+                        <span data-tooltip="Passport not checked:"  data-tooltip-position="bottom">
+                          <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                        </span>  
+                      {% endif %}
+                    
+                      {% if candidate.ccjstatus == 1 %}
+                        <span data-tooltip="CCJ records received: {{ candidate.ccjchecked|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}  
+                      {% if candidate.ccjstatus == 2 %}
+                        <span data-tooltip="CCJ record request made:: {{ candidate.ccjrequestmade|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/amber.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+                      
+                      {% if candidate.ccjstatus == 3 %}
+                        <span data-tooltip="CCJ not yet requested"  data-tooltip-position="bottom">
+                          <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+
+                      {% if candidate.righttoworkstatus == 1 %}
+                        <span data-tooltip="Right to work proof received:{{ candidate.righttoworkchecked|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}  
+                      {% if candidate.righttoworkstatus == 2 %}
+                        <span data-tooltip="Right to work proof requested: {{ candidate.righttoworkrequestmade|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/amber.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+                      {% if candidate.righttoworkstatus == 3 %}
+                        <span data-tooltip="Right to work proof not yet requested"  data-tooltip-position="bottom">
+                          <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+
+                      {% if candidate.dvlc == 1 %}
+                        <span data-tooltip="Driving Licence checked:  {{ candidate.dvlcpoints}}-points" data-tooltip-position="bottom">
+                          {% if  candidate.dvlcpoints > 0 %}
+                            <img src="/media/green!.jpg" alt="", height = 32, width = 32>
+                          {% else %}
+                            <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                          {% endif %}
+                        </span>
+                      {% endif %}  
+                      {% if candidate.dvlc == 0 %}
+                         <span data-tooltip="Driving not checked:"  data-tooltip-position="bottom">
+                        <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                      {% endif %}
+                  
+                      {% if candidate.dbsstatus == 1 %}
+                        <span data-tooltip="DBS received: {{ candidate.dbschecked|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/green.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}  
+                      {% if candidate.dbsstatus == 2 %}
+                        <span data-tooltip="DBS requested: {{ candidate.dbsrequestmade|date:"j-M-Y" }}"  data-tooltip-position="bottom">
+                          <img src="/media/amber.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+                      {% if candidate.dbsstatus == 3 %}
+                        <span data-tooltip="DBS not yet requested"  data-tooltip-position="bottom">
+                          <img src="/media/red.jpg" alt="", height = 32, width = 32>
+                        </span>
+                      {% endif %}
+                    </a>
+                 {% if request.user.is_superuser%}
+                    <h6><a class="mr-2" href="{% url 'client-name' candidate.client.username %}">{{ candidate.client.clientprofile.fullname }}: Candidate</a></h6> 
+                {% endif %}               
+              </h3>
+            </article> 
+    {% empty %}
+        <h5>No results for this search</h5>
+    {% endfor %}  
+   </div>
+{% endblock content %}
